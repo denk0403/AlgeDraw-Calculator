@@ -1,0 +1,68 @@
+.background {
+  viewport-fill: fb-black;
+}
+
+#answer {
+  text-anchor: end;
+  font-family: Tungsten-Medium;
+  x: 295;
+  y: 30;
+  text-length: 1000;
+  font-size: 37;
+  fill: white;
+}
+
+#approximate {
+  text-anchor: start;
+  font-family: Fabrikat-Bold;
+  x: 5;
+  y: 20;
+  text-length: 1;
+  font-size: 30;
+  fill: white;
+}
+
+.tumbler { y: 85; height: 50}
+.item { width: 60; height: 40; }
+.item text { font-size: 40; fill: white; x: 15;  }
+
+.header {
+  y: 45;
+  font-family: System-Regular;
+  font-size: 25;
+  fill: "yellow"
+}
+
+.tile-list-item {
+  height: 60;
+}
+
+.tile-list-item text {
+  font-family: System-Regular;
+  fill: "white";
+  font-size: 30;
+}
+
+.tile-divider-bottom {
+  x: 0;
+  y: 100%-2;
+  width: 100%;
+  height: 2;
+  fill: #A0A0A0;
+}
+
+#ink_level {
+  fill: "white";
+  text-length: 1000;
+  font-size: 25;
+  x: 15;
+  y: 290;
+}
+
+#prev {
+  fill: "white";
+  text-length: 25;
+  font-size: 20;
+  x: 15;
+  y: 57;
+}

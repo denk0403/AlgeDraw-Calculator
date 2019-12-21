@@ -1,0 +1,228 @@
+<svg class="background">
+
+  <!-- Calculator Number Input -->
+  <svg id="input-output" display="none">
+    <rect x="0" y="0" width="100%" height="100%" fill="black"/>
+    <text id="answer">0</text>
+    <text id="approximate" visibility="hidden">≈</text>
+    
+    <!-- Back Button -->
+    <use id="back_button" href="#square-button" x="-5" y="-5" width="60" height="45">
+      <set href="#image" attributeName="display" to="inline" />
+      <set href="#image" attributeName="href" to="back_arrow.png" />
+      <set href="#image" attributeName="width" to="25" />
+      <set href="#image" attributeName="height" to="25" />
+      <set href="#image" attributeName="y" to="15" />
+    </use>
+
+    <svg id="drawingPanel">
+      <rect id="panelBack" x="0" y="35" width="100%-60" height="100%-38"
+          fill="white" rx="10" ry="10"/>
+      <rect id="touchPanel" x="3" y="38" width="100%-66" height="100%-44"
+          fill="black" pointer-events="visible" rx="15" ry="15"/>
+      <defs>
+        <symbol id="point_sym" visibility="hidden">
+          <!-- Make width 7 -->
+          <line id="line" x1="0" y1="0" x2="0" y2="0" fill="snow" stroke-width="10" />
+        </symbol>
+      </defs>
+
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+
+      <text id="prev">Prev: 0</text>
+      <text id="ink_level">Ink Level: 50</text>
+    </svg>
+    
+    <use id="clear" href="#push-button" x="243" y="35" width="54" height="50"
+      fill="fb-red" font-family="System-Regular" font-size="30">
+      <set href="#text" attributeName="text-buffer" to="AC" />
+      <set href="#text" attributeName="y" to="10" />
+    </use>
+    <use id="opsBtn" href="#push-button" x="243" y="$+3" width="54" height="50"
+      fill="gray" font-family="System-Regular" font-size="25">
+      <set href="#text" attributeName="text-buffer" to="Ops" />
+      <set href="#text" attributeName="y" to="10" />
+    </use>
+    <use id="plus-minus" href="#push-button" x="243" y="$+3" width="54" height="50"
+      fill="gray" font-family="System-Regular" font-size="30">
+      <set href="#text" attributeName="text-buffer" to="+/-" />
+      <set href="#text" attributeName="y" to="10" />
+    </use>
+    <use id="decimal" href="#push-button" x="243" y="$+3" width="54" height="50"
+      fill="gray" font-family="System-Regular" font-size="45">
+      <set href="#text" attributeName="text-buffer" to="." />
+      <set href="#text" attributeName="y" to="10" />
+    </use>
+    <use id="equal" href="#push-button" x="243" y="$+3" width="54" height="50"
+      fill="green" font-family="System-Regular" font-size="40">
+      <set href="#text" attributeName="text-buffer" to="=" />
+      <set href="#text" attributeName="y" to="10" />
+    </use>
+  </svg> 
+  
+  <svg id="operations" display="none">
+    <rect x="0" y="0" width="100%" height="100%" fill="black"/>
+    <use id="plus" class="binary operation" href="#push-button" x="5" y="5" width="95" height="56"
+      fill="crimson" font-family="System-Regular" font-size="40">
+      <set href="#text" attributeName="text-buffer" to="+" />
+      <set href="#text" attributeName="y" to="10" />
+    </use>
+    <use id="minus" class="binary operation" href="#push-button" x="$+3" y="$-56" width="95" height="56"
+      fill="crimson" font-family="System-Regular" font-size="40">
+      <set href="#text" attributeName="text-buffer" to="-" />
+      <set href="#text" attributeName="y" to="10" />
+    </use>
+    <use id="multiply" class="binary operation" href="#push-button" x="$+3" y="$-56" width="95" height="56"
+      fill="crimson" font-family="System-Regular" font-size="40">
+      <set href="#text" attributeName="text-buffer" to="x" />
+      <set href="#text" attributeName="y" to="10" />
+    </use>
+    <use id="divide" class="binary operation" href="#push-button" x="5" y="$+3" width="95" height="56"
+      fill="crimson" font-family="System-Regular" font-size="50">
+      <set href="#text" attributeName="text-buffer" to="÷" />
+      <set href="#text" attributeName="y" to="10" />
+    </use>
+    <use id="exponent" class="binary operation" href="#push-button" x="$+3" y="$-56" width="95" height="56"
+      fill="crimson" font-family="System-Regular" font-size="30">
+      <set href="#text" attributeName="text-buffer" to="x^y" />
+      <set href="#text" attributeName="y" to="10" />
+    </use>
+    <use id="log" class="binary operation" href="#push-button" x="$+3" y="$-56" width="95" height="56"
+      fill="crimson" font-family="System-Regular" font-size="30">
+      <set href="#text" attributeName="text-buffer" to="logx(y)" />
+      <set href="#text" attributeName="y" to="10" />
+    </use>
+    <use id="sin" class="unary operation" href="#push-button" x="5" y="$+3" width="95" height="56"
+      fill="darkred" font-family="System-Regular" font-size="30">
+      <set href="#text" attributeName="text-buffer" to="sin" />
+      <set href="#text" attributeName="y" to="10" />
+    </use>
+    <use id="cos" class="unary operation" href="#push-button" x="$+3" y="$-56" width="95" height="56"
+      fill="darkred" font-family="System-Regular" font-size="30">
+      <set href="#text" attributeName="text-buffer" to="cos" />
+      <set href="#text" attributeName="y" to="10" />
+    </use>
+    <use id="tan" class="unary operation" href="#push-button" x="$+3" y="$-56" width="95" height="56"
+      fill="darkred" font-family="System-Regular" font-size="30">
+      <set href="#text" attributeName="text-buffer" to="tan" />
+      <set href="#text" attributeName="y" to="10" />
+    </use>
+    <use id="reciprocal" class="unary operation" href="#push-button" x="5" y="$+3" width="144" height="56"
+      fill="darkred" font-family="System-Regular" font-size="30">
+      <set href="#text" attributeName="text-buffer" to="1/x" />
+      <set href="#text" attributeName="y" to="10" />
+    </use>
+    <use id="factorial" class="unary operation" href="#push-button" x="$+3" y="$-56" width="144" height="56"
+      fill="darkred" font-family="System-Regular" font-size="30">
+      <set href="#text" attributeName="text-buffer" to="x!" />
+      <set href="#text" attributeName="y" to="10" />
+    </use>
+    <use id="flip" class="unary operation" href="#push-button" x="5" y="$+3" width="144" height="56"
+      fill="darkred" font-family="System-Regular" font-size="25">
+      <set href="#text" attributeName="text-buffer" to="Flip x<-->y" />
+      <set href="#text" attributeName="y" to="10" />
+    </use>
+    <use id="stackBtn" href="#push-button" x="$+3" y="$-56" width="144" height="56"
+      fill="darkred" font-family="System-Regular" font-size="25">
+      <set href="#text" attributeName="text-buffer" to="View Stack" />
+      <set href="#text" attributeName="y" to="10" />
+    </use>
+    
+    <animate attributeName="y" begin="enable" from="300" to="0" dur="0.25" />
+    <animate attributeName="y" begin="disable" from="0" to="300" dur="0.25" />
+  </svg>
+  
+  <svg id="stack-view" display="none">
+    <rect x="0" y="0" width="100%" height="100%" fill="black"/>
+    <defs>
+      <symbol id="my-tile-item" href="#tile-list-item" focusable="false"
+              pointer-events="none" system-events="all" display="none">
+        <text id="text" text-length="16" />
+        <rect id="tile-divider-bottom" class="tile-divider-bottom" />
+        <rect id="touch-me" pointer-events="all" x="0" y="0" width="100%"
+              height="100%-2" opacity="0" />
+      </symbol>
+    </defs>
+    <use id="stack" href="#tile-list" y="50" height="100%-50">
+      <var id="virtual" value="1" />
+      <var id="separator-height-bottom" value="2" />
+
+      <use id="my-pool" href="#tile-list-pool">
+        <use id="my-pool[0]" href="#my-tile-item" class="tile-list-item" />
+        <use id="my-pool[1]" href="#my-tile-item" class="tile-list-item" />
+        <use id="my-pool[2]" href="#my-tile-item" class="tile-list-item" />
+        <use id="my-pool[3]" href="#my-tile-item" class="tile-list-item" />
+        <use id="my-pool[4]" href="#my-tile-item" class="tile-list-item" />
+        <use id="my-pool[5]" href="#my-tile-item" class="tile-list-item" />
+        <use id="my-pool[6]" href="#my-tile-item" class="tile-list-item" />
+        <use id="my-pool[7]" href="#my-tile-item" class="tile-list-item" />
+        <use id="my-pool[8]" href="#my-tile-item" class="tile-list-item" />
+        <use id="my-pool[9]" href="#my-tile-item" class="tile-list-item" />
+      </use>
+    </use>
+    <rect x="0" y="0" width="100%" height="50" fill="black" />
+    <text x="5" y="40" fill="yellow" font-size="35">Stack</text>
+    
+    <animate attributeName="y" begin="enable" from="300" to="0" dur="0.25" />
+    <animate attributeName="y" begin="disable" from="0" to="300" dur="0.25" />
+  </svg> 
+  
+  <svg id="connect-phone" display="inline">
+    <rect x="0" y="0" width="100%" height="100%" fill="black"/>
+    <text x="150" y="50" text-anchor="middle" fill="fb-red" font-size="24">No Phone Connection</text>
+    <textarea x="5" y="100" width="100%-10" text-anchor="middle"
+    font-family="System-Regular" fill="white" font-size="24">Make sure your Fitbit is connected to your phone, 
+      it's needed in the app to convert your drawings!</textarea>
+  </svg>
+
+</svg>

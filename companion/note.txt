@@ -1,0 +1,3 @@
+The following companion files have been excluded to protect my work:
+
+- neighbors.js

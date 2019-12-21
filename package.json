@@ -1,0 +1,24 @@
+{
+  "fitbit": {
+    "appUUID": "49efc266-eebe-4bb5-91ab-6cce92baa2e2",
+    "appType": "app",
+    "appDisplayName": "AlgeDraw",
+    "iconFile": "resources/icon.png",
+    "wipeColor": "#8bc34a",
+    "requestedPermissions": [],
+    "buildTargets": [
+      "meson",
+      "gemini",
+      "mira"
+    ],
+    "i18n": {
+      "en": {
+        "name": "AlgeDraw"
+      }
+    },
+    "defaultLanguage": "en-US"
+  },
+  "devDependencies": {
+    "@fitbit/sdk": "~4.1.0"
+  }
+}
