@@ -98,7 +98,8 @@ function setAnswer(numStr, save, nextClear) {
   if (!broken) {
     if (numStr != "0") {
       clear.text = "C"
-      if (save) {
+      let length = localStack.length;
+      if (save && (length === 0 || (length > 0 && localStack[length-1] !== answer.text))) {
         localStack.push(answer.text);
       }
     }
@@ -197,7 +198,12 @@ opsBtn.onclick = function(evt) {
 
 backBtn.onclick = function(evt) {
   if (localStack.length > 0) {
-    answer.text = localStack.pop();
+    let prev = localStack.pop();
+    // if (prev === answer.text && localStack.length > 0) {
+    //   answer.text = localStack.pop()
+    // } else {
+      answer.text = prev;
+    // }
   }
   if (answer.text == "0") {
     resetToZero();
@@ -286,11 +292,11 @@ unOps.forEach(function(operator) {
         let temp = stored;
         let success = store(`${answer.text}`);
         if (success) {
-          load(`${temp}`, true, false);
+          load(`${temp}`, false, true);
         }
       }
       resetLocalStack();
-      addToStack(answer.text);
+      opId !== "flip" && addToStack(answer.text);
     } else {
       vibrationEnabled && vibration.start("nudge");
     }
