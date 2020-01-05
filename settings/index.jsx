@@ -13,9 +13,15 @@ function mySettings(props) {
           label={`In-App Vibrations: ${props.settings.toggleVibrations === 'true' ? 'On' : 'Off'}`}
         />
       </Section>
-      <Section title={<Text bold align="center">Tutorial 📄</Text>}>
-        <Link source="https://denk0403.github.io/algedraw%20calculator/help.html">
-          <Text align="center">• How To Draw The Numbers ✏️</Text>
+      <Section title={<Text bold align="center">Tutorials 📄</Text>}>
+        <Link source="https://denk0403.github.io/algedraw%20calculator/drawing.html">
+          <Text align="center">• How To Draw Each Digit ✏️</Text>
+        </Link>
+        <Link source="https://denk0403.github.io/algedraw%20calculator/radiansdegrees.html">
+          <Text align="center">• Switching Between Degrees And Radians 🔄</Text>
+        </Link>
+        <Link source="https://denk0403.github.io/algedraw%20calculator/constants.html">
+          <Text align="center">• Using Mathematical Constants 🔢</Text>
         </Link>
       </Section>
       <Section>

@@ -81,6 +81,7 @@
 
       <text id="prev">Prev: 0</text>
       <text id="ink_level">Ink Level: 50</text>
+      <text id="rad-deg">Rad</text>
       <use id="spinner" href="#spinner" />
     </svg>
     

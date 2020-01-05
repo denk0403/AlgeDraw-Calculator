@@ -54,7 +54,7 @@
 #ink_level {
   fill: "white";
   text-length: 1000;
-  font-size: 25;
+  font-size: 20;
   x: 15;
   y: 290;
 }
@@ -73,4 +73,12 @@
   width: 20; 
   height: 20; 
   fill: "white"; 
+}
+
+#rad-deg {
+  fill: "white";
+  text-length: 25;
+  font-size: 20;
+  x: 190;
+  y: 289;
 }

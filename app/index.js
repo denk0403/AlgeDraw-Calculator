@@ -23,6 +23,7 @@ let approximate = document.getElementById("approximate");
 let prev = document.getElementById("prev");
 let plusMinus = document.getElementById("plus-minus");
 let connectPhone = document.getElementById("connect-phone");
+let radDeg = document.getElementById("rad-deg");
 
 let stored = "0"; // for binary operations
 let operation = null;
@@ -34,6 +35,7 @@ let waitClear = null;
 let stack = new Array();
 let localStack = new Array(); // loaded memory
 let vibrationEnabled = false;
+let radians = true;
 
 function resetLocalStack() {
   localStack = new Array();
@@ -92,6 +94,7 @@ function resetToZero() {
   decimalSet = false;
   clear.text = "AC";
   backBtn.style.display = "none";
+  localStack = [0];
 }
 
 function setAnswer(numStr, save, nextClear) {
@@ -286,10 +289,19 @@ unOps.forEach(function(operator) {
           setToBroken();
         }    
       } else if (opId === "sin") {
+        if (!radians) {
+          num = num * Math.PI / 180;
+        }
         load(`${Math.sin(num)}`, false, true);     
       } else if (opId === "cos") {
+        if (!radians) {
+          num = num * Math.PI / 180;
+        }
         load(`${Math.cos(num)}`, false, true);    
       } else if (opId === "tan") {
+        if (!radians) {
+          num = num * Math.PI / 180;
+        }
         load(`${Math.tan(num)}`, false, true);     
       } else if (opId === "flip") {
         let temp = stored;
@@ -385,6 +397,16 @@ document.onkeypress = function(evt) {
 
 stackBtn.onclick = function(evt) {
   showStack();
+}
+
+function setToRadians() {
+  radians = true;
+  radDeg.text = "Rad";
+}
+
+function setToDegrees() {
+  radians = false;
+  radDeg.text = "Deg";
 }
 
 function truncate(str) {
@@ -580,6 +602,10 @@ messaging.peerSocket.onmessage = evt => {
     let numStr = evt.data.value;
     if (numStr === "Bad Input") {
       vibrationEnabled && vibration.start("nudge");
+    } else if (numStr === "r") {
+        setToRadians();
+    } else if (numStr === "d") {
+        setToDegrees();
     } else if (numStr === "e") {
       if (answer.text != `${Math.E}`) {
         load(`${Math.E}`, true, clearNext);
@@ -587,6 +613,10 @@ messaging.peerSocket.onmessage = evt => {
     } else if (numStr === "pi") {
       if (answer.text != `${Math.PI}`) {
         load(`${Math.PI}`, true, clearNext);
+      }
+    } else if (numStr === "phi") {
+      if (answer.text != `${1.618033988749895}`) {
+        load(`${1.618033988749895}`, true, clearNext);
       }
     } else {
       if (clearNext) {

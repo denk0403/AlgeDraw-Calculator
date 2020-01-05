@@ -88,5 +88,9 @@ messaging.peerSocket.onmessage = evt => {
   if (messaging.peerSocket.readyState === messaging.peerSocket.OPEN && evt.data.angles) {
     messaging.peerSocket.send({messageType: "match", 
                                value: getClosestNeighbor(evt.data.angles)});
+    // setTimeout(() => {
+    //   messaging.peerSocket.send({messageType: "match", 
+    //                            value: getClosestNeighbor(evt.data.angles)});
+    // }, 1250)
   }
 };
