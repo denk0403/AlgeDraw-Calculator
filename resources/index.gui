@@ -7,7 +7,7 @@
     <text id="approximate" visibility="hidden">≈</text>
     
     <!-- Back Button -->
-    <use id="back_button" href="#square-button" x="-5" y="-5" width="60" height="45">
+    <use display="none" id="back_button" href="#square-button" x="-5" y="-5" width="60" height="45">
       <set href="#image" attributeName="display" to="inline" />
       <set href="#image" attributeName="href" to="back_arrow.png" />
       <set href="#image" attributeName="width" to="25" />
@@ -81,6 +81,7 @@
 
       <text id="prev">Prev: 0</text>
       <text id="ink_level">Ink Level: 50</text>
+      <use id="spinner" href="#spinner" />
     </svg>
     
     <use id="clear" href="#push-button" x="243" y="35" width="54" height="50"

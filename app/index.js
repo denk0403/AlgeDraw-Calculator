@@ -91,7 +91,7 @@ function resetToZero() {
   load("0", false, true);
   decimalSet = false;
   clear.text = "AC";
-  backBtn.style.display = "inherit";
+  backBtn.style.display = "none";
 }
 
 function setAnswer(numStr, save, nextClear) {
@@ -102,6 +102,9 @@ function setAnswer(numStr, save, nextClear) {
       if (save && (length === 0 || (length > 0 && localStack[length-1] !== answer.text))) {
         localStack.push(answer.text);
       }
+    }
+    if (nextClear) {
+      localStack = [0];
     }
     clearNext = nextClear;
     answer.text = numStr;
@@ -338,14 +341,18 @@ function setToBroken() {
 }
 
 decimal.onclick = function(evt) {
-  if (!broken && !decimalSet) {
-    if (answer.text.length < 17) {
-      appendDigit(".", clearNext);
-      decimal.style.fill = "blue";
-      setTimeout(() => {
-        decimal.style.fill = "gray";
-      }, 150);
+  if (!broken && answer.text.length < 17) {
+    if (clearNext) {
+      load("0.", false, false);
+    } else {
+      if (!decimalSet) {
+        appendDigit(".", false);
+      }
     }
+    decimal.style.fill = "blue";
+    setTimeout(() => {
+      decimal.style.fill = "gray";
+    }, 150);
   }
 }
 
@@ -417,8 +424,11 @@ VTStack.length = stack.length;
 let touchPanel = document.getElementById("touchPanel");
 let pointsSVG = document.getElementsByClassName("point");
 let inkIndicator = document.getElementById("ink_level");
+let spinner = document.getElementById("spinner");
 let lines = new Array();
 let pathLength = 0;
+let inputDelayTimer = null;
+const INPUT_DELAY = 400;
 
 function hypot2(x, y) {
   return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
@@ -442,15 +452,10 @@ resetScreen();
 
 function endPath() {
   if (lines.length > 5) {
+    spinner.state = "enabled";
     askForBestMatch(encodeAsPath(lines));
   }
   resetScreen();
-}
-
-touchPanel.onclick = function(evt) {
-  if (!broken) {
-    endPath();
-  }
 }
 
 touchPanel.onmousedown = function(evt) {
@@ -469,10 +474,16 @@ touchPanel.onmousedown = function(evt) {
     pointsSVG[count].style.visibility = "visible";
     inkIndicator.text = "Ink Level: " + (pointsSVG.length - count - 1);
   }
+  inputDelayTimer = setTimeout(() => {
+    if (!broken) {
+      endPath();
+    }
+  }, INPUT_DELAY);
 }
 
 touchPanel.onmousemove = function(evt) {
   let count = lines.length;
+  clearTimeout(inputDelayTimer);
   if (count > 0 && count < pointsSVG.length) {
     
     // connects a new line to the path
@@ -490,6 +501,11 @@ touchPanel.onmousemove = function(evt) {
     pointsSVG[count].style.visibility = "visible";
     inkIndicator.text = "Ink Level: " + (pointsSVG.length - count - 1);
   }
+  inputDelayTimer = setTimeout(() => {
+    if (!broken) {
+      endPath();
+    }
+  }, INPUT_DELAY);
 };
 
 function getAngle2(x1, y1, x2, y2) {
@@ -560,6 +576,7 @@ messaging.peerSocket.onmessage = evt => {
       vibrationEnabled = setting.value === "true";
     }
   } else if (evt.data.messageType == "match") {
+    spinner.state = "disabled";
     let numStr = evt.data.value;
     if (numStr === "Bad Input") {
       vibrationEnabled && vibration.start("nudge");

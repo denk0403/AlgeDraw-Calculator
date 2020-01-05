@@ -26,7 +26,7 @@ function restoreSettings() {
         messageType: "restoreSetting",
         setting: {key: key, value: settingsStorage.getItem(key)}
       };
-      console.log(data)
+      //console.log(data)
       restoreSetting(data);
     }
   }
