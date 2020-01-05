@@ -16,3 +16,8 @@ _Note: A consistent phone connection is required to use this app._
 
 # Images
 <img width="275" alt="Calculator-screenshot-1" src="https://user-images.githubusercontent.com/3473945/71306136-cd0fd200-23aa-11ea-935a-8c4683b5d1a0.png"> <img width="275" alt="Calculator-screenshot-2" src="https://user-images.githubusercontent.com/3473945/71306158-fd577080-23aa-11ea-88b8-9fb33f595e48.png"> <img width="275" alt="Calculator-screenshot-3" src="https://user-images.githubusercontent.com/3473945/71306145-e153cf00-23aa-11ea-9f90-12be1e069b92.png">
+
+# Tutorials
+- [How To Draw Each Digit ✏️](https://denk0403.github.io/algedraw%20calculator/drawing.html)
+- [Switching Between Degrees And Radians 🔄](https://denk0403.github.io/algedraw%20calculator/radiansdegrees.html)
+- [Using Mathematical Constants 🔢](https://denk0403.github.io/algedraw%20calculator/constants.html)
