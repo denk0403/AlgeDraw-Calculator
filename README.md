@@ -5,10 +5,10 @@ Well, no need to fear anymore because AlgeDraw is the first twelve function calc
 
 # Features 
 - 👆 Use your finger to draw and input digits one at a time.
-- 🔢 Load commonly used constants like e and π.
+- 🔢 Load commonly used constants like e, π, and φ.
 - ⚫️ Work with decimals using the built-in decimal button.
 - ↩️ Undo inputs or loaded constants with the back button.
-- 📦 Keep track of what you have previously inputted in a binary computation.
+- 🔄 Switch between radians and degrees for your trigonometric needs.
 - ➕ Access 12 different functions to solve any algebra or simple trigonometry problem.
 - 📚 Save all computations automatically to the stack (per session) and retrieve them for large calculations.
 
