@@ -466,6 +466,7 @@ function resetScreen() {
     element.style.visibility = "hidden";
     element.getElementById("line").style.fill = "snow";
   })
+  inputDelayTimer = null;
   pathLength = 0;
   inkIndicator.text = "Ink Level: " + pointsSVG.length; 
 }
@@ -482,7 +483,7 @@ function endPath() {
 
 touchPanel.onmousedown = function(evt) {
   let count = lines.length;
-  if (count < pointsSVG.length) {
+  if (count < pointsSVG.length && !inputDelayTimer) {
     
     // move line to new starting point
     let newLine = pointsSVG[count].getElementById("line");
@@ -495,18 +496,19 @@ touchPanel.onmousedown = function(evt) {
     // update view
     pointsSVG[count].style.visibility = "visible";
     inkIndicator.text = "Ink Level: " + (pointsSVG.length - count - 1);
+    
+    inputDelayTimer = setTimeout(() => {
+      if (!broken) {
+        endPath();
+      }
+    }, INPUT_DELAY);
   }
-  inputDelayTimer = setTimeout(() => {
-    if (!broken) {
-      endPath();
-    }
-  }, INPUT_DELAY);
 }
 
 touchPanel.onmousemove = function(evt) {
   let count = lines.length;
-  clearTimeout(inputDelayTimer);
-  if (count > 0 && count < pointsSVG.length) {
+  if (count > 0 && count < pointsSVG.length && inputDelayTimer) {
+    clearTimeout(inputDelayTimer);
     
     // connects a new line to the path
     let newLine = pointsSVG[count].getElementById("line");
@@ -522,12 +524,12 @@ touchPanel.onmousemove = function(evt) {
     // update view
     pointsSVG[count].style.visibility = "visible";
     inkIndicator.text = "Ink Level: " + (pointsSVG.length - count - 1);
-  }
-  inputDelayTimer = setTimeout(() => {
+      inputDelayTimer = setTimeout(() => {
     if (!broken) {
       endPath();
     }
   }, INPUT_DELAY);
+  }
 };
 
 function getAngle2(x1, y1, x2, y2) {
