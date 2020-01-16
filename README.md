@@ -22,3 +22,5 @@ _Note: A consistent phone connection is required to use this app._
 - [Switching Between Degrees And Radians 🔄](https://denk0403.github.io/algedraw%20calculator/radiansdegrees.html)
 - [Using Mathematical Constants 🔢](https://denk0403.github.io/algedraw%20calculator/constants.html)
 
+# Download
+Click [__here__](https://gallery.fitbit.com/details/49efc266-eebe-4bb5-91ab-6cce92baa2e2) to download it from the Fitbit App Gallery!
