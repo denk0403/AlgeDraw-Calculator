@@ -79,8 +79,60 @@
       <use class="point" href="#point_sym" />
       <use class="point" href="#point_sym" />
 
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+      <use class="point" href="#point_sym" />
+
       <text id="prev">Prev: 0</text>
-      <text id="ink_level">Ink Level: 50</text>
+      <text id="ink_level">Ink Level: 100</text>
       <text id="rad-deg">Rad</text>
       <use id="spinner" href="#spinner" />
     </svg>
@@ -176,7 +228,7 @@
     </use>
     <use id="stackBtn" href="#push-button" x="$+3" y="$-56" width="144" height="56"
       fill="darkred" font-family="System-Regular" font-size="25">
-      <set href="#text" attributeName="text-buffer" to="View Stack" />
+      <set href="#text" attributeName="text-buffer" to="View History" />
       <set href="#text" attributeName="y" to="10" />
     </use>
     
@@ -213,7 +265,7 @@
       </use>
     </use>
     <rect x="0" y="0" width="100%" height="50" fill="black" />
-    <text x="5" y="40" fill="yellow" font-size="35">Stack</text>
+    <text x="5" y="40" fill="yellow" font-size="35">History</text>
     
     <animate attributeName="y" begin="enable" from="300" to="0" dur="0.25" />
     <animate attributeName="y" begin="disable" from="0" to="300" dur="0.25" />

@@ -1,96 +1,128 @@
-import * as messaging from "messaging";
-import {data} from "./neighbors.js"
+// @ts-chec
+import { peerSocket } from "messaging";
 import { settingsStorage } from "settings";
-import { me } from "companion";
+import { data as neighbors } from "./neighbors.js";
 
-// Message socket opens
-messaging.peerSocket.onopen = () => {
-  restoreSettings();
+/**
+ * Represents a path as a sequence of angles, where each angle is an
+ * integer between -179 and 180.
+ * @typedef {Array<Number>} Path
+ */
+
+/**
+ * Represents a message to be sent to the Fitbit device.
+ * @typedef Message
+ * @property {"restoreSetting" | "match"} messageType
+ * @property {{key: String, value: String}=} setting
+ * @property {String=} value
+ */
+
+/**
+ * Restores app settings on opening the app.
+ */
+peerSocket.onopen = () => {
+    restoreSettings();
 };
 
-// A user changes settings
-settingsStorage.onchange = evt => {
-  let data = {
-    messageType: "restoreSetting",
-    setting: {key: evt.key, value: evt.newValue}
-  };
-  restoreSetting(data);
-};
-
-// Restore any previously saved settings and send to the device
-function restoreSettings() {
-  for (let index = 0; index < settingsStorage.length; index++) {
-    let key = settingsStorage.key(index);
-    if (key) {
-      let data = {
+/**
+ * Detects changes to app settings and updates them on the device.
+ */
+settingsStorage.onchange = (evt) => {
+    let data = {
         messageType: "restoreSetting",
-        setting: {key: key, value: settingsStorage.getItem(key)}
-      };
-      //console.log(data)
-      restoreSetting(data);
+        setting: { key: evt.key, value: evt.newValue },
+    };
+    sendMessage(data);
+};
+
+/**
+ * Retrieves previously saved app settings and sends them to the device.
+ */
+function restoreSettings() {
+    for (let index = 0; index < settingsStorage.length; index++) {
+        let key = settingsStorage.key(index);
+        if (key) {
+            let data = {
+                messageType: "restoreSetting",
+                setting: { key: key, value: settingsStorage.getItem(key) },
+            };
+            //console.log(data)
+            sendMessage(data);
+        }
     }
-  }
 }
 
-// Send data to device using Messaging API
-function restoreSetting(data) {
-  if (messaging.peerSocket.readyState === messaging.peerSocket.OPEN) {
-    messaging.peerSocket.send(data);
-  }
+/**
+ * Sends the given message to the app.
+ * @param {Message} data
+ */
+function sendMessage(data) {
+    if (peerSocket.readyState === peerSocket.OPEN) {
+        peerSocket.send(data);
+    }
 }
 
 //////////////////////////
 // Nearest-Neighbor Code
 //////////////////////////
-const PERCENT_MATCH = 0.1;
+const ERROR_PERCENT = 0.1; // Permitted error percent from perfect match
+const MAX_ERROR_DISTANCE = 4860000; // equal to: max_angle_difference^2 * number_of_points = (180^2 * 150)
+const ERROR_THRESHOLD = MAX_ERROR_DISTANCE * ERROR_PERCENT;
 
-// given an array and a function which takes in a value from the array,
-// returns the element which minimizes the value of the function
-function minArgs(arr, toVal) {
-  let bestMatch = undefined;
-  let val = arr.reduce((min, potentialMatch) => {
-    let curVal = toVal(potentialMatch);
-    if (curVal < min) {
-        bestMatch = potentialMatch;
-        return curVal;
-    }
-    return min;
-  }, Infinity);
-  return {match: bestMatch, value: val};
+/**
+ * Returns the element from the given array the minimizes the value
+ * of the given function.
+ * @template T
+ * @param {Array<T>} array An array of elements
+ * @param {(element: T) => Number} toValue A function that returns some value
+ * @returns {{ minElement: T, minValue: Number }}
+ */
+function minimize(array, toValue) {
+    return array.reduce(
+        (partialMin, currentElement) => {
+            const { minValue } = partialMin;
+            const currentValue = toValue(currentElement);
+            if (currentValue < minValue) {
+                return { minElement: currentElement, minValue: currentValue };
+            }
+            return partialMin;
+        },
+        { minValue: Infinity },
+    );
 }
 
-// computes n mod m
-function mod(n, m) {
-  return ((n % m) + m) % m;
-}
-
-// finds distance between two paths
+/**
+ * Finds squared Euclidean distance between two paths.
+ * @param {Path} testArr The array of values to test
+ * @param {Path} trainArr An array of training data
+ */
 function distance(testArr, trainArr) {
-  let sum = 0;
-  testArr.forEach((testComp, i) => {
-    let testNum = mod(testComp, 360);
-    let trainNum = mod(trainArr[i], 360);
-    let diff = Math.abs(testNum-trainNum);
-    sum += Math.pow(Math.min(diff, 360-diff), 2);
-  })
-  return sum;
+    return testArr.reduce((partialSum, testNum, index) => {
+        const trainNum = trainArr[index];
+        const diff = Math.abs(testNum - trainNum);
+        return partialSum + Math.pow(Math.min(diff, 360 - diff), 2);
+    }, 0);
 }
 
-// determines the closest match to the user input path from the training data
+/**
+ * Determines the nearest match to a given path from training data.
+ * @param {Path} angles
+ */
 function getClosestNeighbor(angles) {
-  let minObj = minArgs(data, (neighbor) => distance(angles, neighbor.input));
-  // console.log(minObj.value);
-  return minObj.value < (4860000 * PERCENT_MATCH) ? minObj.match.output : "Bad Input" // enforces 85% match
+    const nearestResult = minimize(neighbors, (neighbor) => distance(angles, neighbor.input));
+    return nearestResult.minValue < ERROR_THRESHOLD ? nearestResult.minElement.output : "Bad Input"; // enforces 85% match
 }
 
-messaging.peerSocket.onmessage = evt => {
-  //console.log(printArray(evt.data.angles));
-  if (messaging.peerSocket.readyState === messaging.peerSocket.OPEN && evt.data.angles) {
-    messaging.peerSocket.send({messageType: "match", 
-                               value: getClosestNeighbor(evt.data.angles)});
-    // setTimeout(() => {
-    //   messaging.peerSocket.send({messageType: "match", 
-    //                            value: getClosestNeighbor(evt.data.angles)});
-    // }, 1250)
-  }
+/**
+ * Upon receiving a message event with data containing an array angles,
+ * the companion sends back a message containing the closest matching value.
+ * @param {Event} evt
+ */
+peerSocket.onmessage = (evt) => {
+    if (evt.data.angles) {
+        sendMessage({
+            messageType: "match",
+            value: getClosestNeighbor(evt.data.angles),
+        });
+    }
 };
