@@ -1,24 +1,35 @@
 {
-  "fitbit": {
-    "appUUID": "49efc266-eebe-4bb5-91ab-6cce92baa2e2",
-    "appType": "app",
-    "appDisplayName": "AlgeDraw",
-    "iconFile": "resources/icon.png",
-    "wipeColor": "#8bc34a",
-    "requestedPermissions": [],
-    "buildTargets": [
-      "meson",
-      "gemini",
-      "mira"
-    ],
-    "i18n": {
-      "en": {
-        "name": "AlgeDraw"
-      }
+    "fitbit": {
+        "appUUID": "49efc266-eebe-4bb5-91ab-6cce92baa2e2",
+        "appType": "app",
+        "appDisplayName": "AlgeDraw",
+        "iconFile": "resources/icon.png",
+        "wipeColor": "#8bc34a",
+        "requestedPermissions": [],
+        "buildTargets": [
+            "meson",
+            "gemini",
+            "mira"
+        ],
+        "i18n": {
+            "en": {
+                "name": "AlgeDraw"
+            }
+        },
+        "defaultLanguage": "en-US"
     },
-    "defaultLanguage": "en-US"
-  },
-  "devDependencies": {
-    "@fitbit/sdk": "~4.1.0"
-  }
+    "private": true,
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/denk0403/AlgeDraw-Calculator"
+    },
+    "devDependencies": {
+        "@fitbit/sdk": "~4.1.0",
+        "@fitbit/sdk-cli": "^1.7.2",
+        "fitbit-sdk-types": "^4.3.8"
+    },
+    "scripts": {
+        "build": "fitbit-build",
+        "start": "npx fitbit"
+    }
 }
