@@ -15,7 +15,7 @@ Well, no need to fear anymore because AlgeDraw is the first twelve function calc
 _Note: A consistent phone connection is required to use this app._
 
 # Images
-<img width="275" alt="Calculator-screenshot-1" src="https://user-images.githubusercontent.com/3473945/71306136-cd0fd200-23aa-11ea-935a-8c4683b5d1a0.png"> <img width="275" alt="Calculator-screenshot-2" src="https://user-images.githubusercontent.com/3473945/71306158-fd577080-23aa-11ea-88b8-9fb33f595e48.png"> <img width="275" alt="Calculator-screenshot-3" src="https://user-images.githubusercontent.com/3473945/71306145-e153cf00-23aa-11ea-9f90-12be1e069b92.png">
+<img width="250" alt="Calculator-screenshot-1" src="https://user-images.githubusercontent.com/3473945/71306136-cd0fd200-23aa-11ea-935a-8c4683b5d1a0.png"> <img width="250" alt="Calculator-screenshot-2" src="https://user-images.githubusercontent.com/3473945/71306158-fd577080-23aa-11ea-88b8-9fb33f595e48.png"> <img width="250" alt="Calculator-screenshot-3" src="https://user-images.githubusercontent.com/3473945/71306145-e153cf00-23aa-11ea-9f90-12be1e069b92.png">
 
 # Tutorials
 - [How To Draw Each Digit ✏️](https://denk0403.github.io/algedraw%20calculator/drawing.html)
@@ -24,3 +24,10 @@ _Note: A consistent phone connection is required to use this app._
 
 # Download
 Click [__here__](https://gallery.fitbit.com/details/49efc266-eebe-4bb5-91ab-6cce92baa2e2) to download it from the Fitbit App Gallery!
+
+# Support me
+If you like this project and want to support more projects like it, consider buying me a coffee!
+
+<a href="https://www.buymeacoffee.com/denniskats" title="Support me" style="vertical-align: middle;"><img
+  src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee"
+  style="height: 60px !important; width: 217px !important" /></a>
